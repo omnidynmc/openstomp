@@ -5,7 +5,7 @@ AC_PREREQ([2.65])
 AC_INIT([openstomp], [1.0.1.2], [gcarter@openaprs.net])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([include/config.h])
-AM_INIT_AUTOMAKE([openstomp], [1.0.1.2])
+AM_INIT_AUTOMAKE
 LT_INIT
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -25,17 +25,20 @@ prefix="`pwd`"
 bindir="`pwd`"
 libdir="`pwd`/lib"
 includedir="`pwd`/include"
-ofincludedir="`pwd`/libraries/openframe/include"
-oflibdir="`pwd`/libraries/openframe/lib"
 
-osincludedir="`pwd`/libraries/openstats/include"
-oslibdir="`pwd`/libraries/openstats/lib"
+ofincludedir="/usr/local/include/openframe"
+oflibdir="/usr/local/lib"
 
-stincludedir="`pwd`/libraries/stomp/include"
-stlibdir="`pwd`/libraries/stomp/lib"
+osincludedir="/usr/local/include/openstats"
+oslibdir="/usr/local/lib"
 
-CPPFLAGS="$CPPFLAGS -I/usr/include"
-CXXFLAGS="-Wall -pipe -g -I$includedir -I$ofincludedir -I$stincludedir -I$osincludedir"
+stincludedir="/usr/local/include/stomp"
+stlibdir="/usr/local/lib"
+
+local_include="`pwd`/include"
+
+CPPFLAGS="$CPPFLAGS -I/usr/include -I$local_include"
+CXXFLAGS="-Wall -pipe -g -I$includedir -I$ofincludedir -I$stincludedir -I$osincludedir -I$local_include"
 CXX="g++"
 LIBS="$LIBS"
 
